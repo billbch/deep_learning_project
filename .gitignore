@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environment
+.venv/
+venv/
+
+data/*
+!data/data_loader.py
+
+# VSCode
+.vscode/
+
+*.log
+
+# Outputs (models, results)
+outputs/
+
+# OS files
+.DS_Store
+Thumbs.db
