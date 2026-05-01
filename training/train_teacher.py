@@ -49,20 +49,15 @@ def evaluate(model, test_loader, device):
 
     return correct / total
 
-# Training loop
-epochs = 1  # small number for testing!
+EPOCHS = 100
 
-for epoch in range(epochs):
+for epoch in range(EPOCHS):
     model.train()
 
     total = 0
     correct = 0
 
-    for i, (images, labels) in enumerate(train_loader):
-        if i > 20:
-            break
-        print(f"Batch {i}")
-    #for images, labels in train_loader:
+    for images, labels in train_loader:
         images = images.to(device)
         labels = labels.to(device)
 
@@ -94,7 +89,7 @@ for epoch in range(epochs):
     scheduler.step()
 
     print(
-        f"Epoch {epoch+1}: "
+        f"Epoch {epoch+1}/{EPOCHS}: "
         f"Teacher Train Accuracy = {train_acc:.4f}, "
         f"Teacher Test Accuracy = {test_acc:.4f}"
     )
