@@ -5,17 +5,17 @@ __pycache__/
 # Virtual environment
 .venv/
 venv/
+.venv312/
 
 data/*
 !data/data_loader.py
+!data/corruptions.py
 
 # VSCode
 .vscode/
 
 *.log
 
-# Outputs (models, results)
-outputs/
 
 # OS files
 .DS_Store
