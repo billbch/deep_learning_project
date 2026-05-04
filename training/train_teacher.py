@@ -18,7 +18,7 @@ set_seed(42)
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
 # ── Hyperparameters ───────────────────────────────────────────────────────────
-EPOCHS        = 300   # early stopping will decide when to stop
+EPOCHS        = 120   # early stopping will decide when to stop
 LR            = 0.1
 PATIENCE      = 20    # stop if val_acc doesn't improve for 20 epochs
 # ─────────────────────────────────────────────────────────────────────────────
@@ -66,7 +66,11 @@ def train():
     model     = get_teacher_model().to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.SGD(model.parameters(), lr=LR, momentum=0.9, weight_decay=5e-4)
-    scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=[60, 80], gamma=0.1)
+    scheduler = optim.lr_scheduler.CosineAnnealingLR(
+        optimizer,
+        T_max=EPOCHS,
+        eta_min=1e-4
+    )
 
     os.makedirs("outputs/checkpoints", exist_ok=True)
     os.makedirs("outputs/figures",     exist_ok=True)
