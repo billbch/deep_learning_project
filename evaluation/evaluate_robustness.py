@@ -60,7 +60,7 @@ def robustness_gap(clean_acc: float, corrupted_accs: list) -> float:
 # ── main evaluation ───────────────────────────────────────────────────────────
 
 def evaluate_all():
-    _, clean_loader = get_loaders()
+    _,_, clean_loader = get_loaders()
 
     results = {}
 
